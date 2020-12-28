@@ -22,9 +22,8 @@ module NumBorders
 
        return horizont_borders_counter.get_num()
     end
-end # module NumBorders
+end 
 
-#-------Исполняемая часть файла:
 using .NumBorders
 using HorizonSideRobots
 
