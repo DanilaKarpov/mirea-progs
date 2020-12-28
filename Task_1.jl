@@ -13,7 +13,7 @@ putmarkers!(r::Robot,side::HorizonSide) =
         putmarker!(r)
     end
 
-# Перемещает робота в заданном направлении пока, пока он находится в клетке с маркером (в итоге робот окажется в клетке без маркера)
+# Перемещает робота в заданном направлении пока, пока он находится в клетке с маркером
 move_by_markers(r::Robot,side::HorizonSide) = 
     while ismarker(r)==true 
         move!(r,side) 
