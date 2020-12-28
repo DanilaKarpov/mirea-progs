@@ -1,32 +1,31 @@
-function mean_markers_temperature(r::Robot)
-    sum_temperatures, num_markers = get_sum_temperatures(r)
-    return sum_temperatures/num_markers
-end
-
-function get_sum_temperatures(r::Robot)
-    side=Ost
-    sum_temperatures, num_markers = get_sum_temperatures(r,side)
-    while isborder(r,Nord)==false
-        move!(r,Nord)
-        side=inverse(side)
-        part_sum, part_num = get_sum_temperatures(r,side)
-        sum_temperatures+=part_sum
-        num_markers+=part_num
+function sum_temp(r::Robot)
+    sum = 0 
+    count = 0
+    side = Ost
+    while isborder(r,Nord) == false
+        s, c=moves!(r,side)
+        sum+=s
+        count+=c
+        side = inverse(side)
     end
-    return sum_temperatures, num_markers
-end 
-
-function get_sum_temperatures(r::Robot,side::HorizonSide)
-
-
-    init_values(r) = ismarkers(r) ? (0,0) : (temperanure(r), 1)
-    sum_temperatures, num_markers = init_values(r)
-
-    while isborder(r,side)==false
-        if ismarker(r)==true
-            sum_temperatures += temperature(r)
-            num_markers += 1
+    s, c=moves!(r,side)
+    sum+=s
+    count+=c
+    return (sum/count)
+end
+function moves!(r::Robot,side::HorizonSide)
+    sum = 0 
+    count = 0
+    while isborder(r,side) == false
+        if ismarker(r) == true
+            count+=1
+            sum+= temperature(r)
         end
+        move!(r,side)
     end
-    return sum_temperatures, num_markers 
+    if isborder(r,Nord) == false
+        move!(r,Nord)
+    end
+    return sum, count
 end
+inverse(side::HorizonSide)=HorizonSide(mod(Int(side)+2,4))
