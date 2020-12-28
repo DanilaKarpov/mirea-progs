@@ -1,16 +1,16 @@
 function mark_frame_perimetr!(r::Robot)
     num_vert = moves!(r, Sud)
     num_hor = moves!(r, West)
-    #УТВ: Робот - в Юго-Западном углу
+    #Робот - в Юго-Западном углу
 
     for side in (Nord, Ost, Sud, West)
         putmarkers!(r, side)
     end 
-    #УТВ: По всему периметру стоят маркеры
+    #По всему периметру стоят маркеры
 
     moves!(r, Nord, num_vert)
     moves!(r, Ost, num_hor)
-    #УТВ: Робот - в исходном положении
+    #Робот - в исходном положении
 end
 
 function moves!(r::Robot,side::HorizonSide)
@@ -23,7 +23,7 @@ function moves!(r::Robot,side::HorizonSide)
 end
 
 function moves!(r::Robot,side::HorizonSide,num_steps::Int)
-    for _ in 1:num_steps # символ "_" заменяет фактически не используемую переменную
+    for _ in 1:num_steps
         move!(r,side)
     end
 end
