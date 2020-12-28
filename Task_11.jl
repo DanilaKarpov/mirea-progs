@@ -14,7 +14,7 @@ function mark_centers(r)
 
     movements!(r,Sud,num_steps_to_sud)
     putmarker!(r)
-    movements!(r,Sud) # возвращаемое значение игнорируется
+    movements!(r,Sud)
 
     movements!(r,Sud,num_steps_to_west)
     putmarker!(r)
