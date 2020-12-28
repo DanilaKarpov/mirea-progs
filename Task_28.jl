@@ -5,11 +5,6 @@ module FindMarker
     include("../8/horizonside.jl")
     include("functional_robot.jl")
 
-
-    """
-    find_marker!()
-    перемещает Робота, находящегося где-то на неораниченном поле без внутренних перегородок, в клетку с маркером        
-    """
     function find_marker!(robot)
         robot = interface_protected_robot(robot)
         rectangular_borders = interface_rectangular_borders(robot)
@@ -26,7 +21,7 @@ module FindMarker
     end
 end
 
-# ------- Исполняемая часть файла
+#Исполняемая часть файла
 using HorizonSideRobots
 using .FindMarker
 robot = Robot("9/example_9.2.sit"; animate=true)
