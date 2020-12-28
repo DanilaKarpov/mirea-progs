@@ -3,22 +3,22 @@ function mark_innerrectangle_perimetr!(r::Robot)
     for (i,side) in enumerate((Sud,West,Sud))
         num_steps[i]=moves!(r,side)
     end
-    #УТВ: Робот - в Юго-западном углу внешней рамки
+    #Робот - в Юго-западном углу внешней рамки
 
     side = find_border!(r,Ost,side)
-    #УТВ: Робот - у западной границы внутренней перегородки
+    #Робот - у западной границы внутренней перегородки
 
     mark_innerrectangle_perimetr!(r,side)
-    #УТВ: Робот - снова у западной границы внутренней прямоугольной перегородки
+    #Робот - снова у западной границы внутренней прямоугольной перегородки
 
     moves!(r,Sud)
     moves!(r,West)
-    #УТВ: Робот - в Юго-западном улу внешней рамки
+    #Робот - в Юго-западном улу внешней рамки
 
     for (i,side) in enumerate((Nord,Ost,Nord))
         moves!(r,side, num_steps[i])
     end
-    #УТВ: Робот - в исходном положении
+    #Робот - в исходном положении
 end
 
 function mark_innerrectangle_perimetr!(r::Robot, side::HorizonSide)
@@ -29,9 +29,8 @@ function mark_innerrectangle_perimetr!(r::Robot, side::HorizonSide)
 end
 
 get_directions(side::HorizonSide) = 
-    if side == Nord  
-    # - обход будет по часовой стрелке      
+    if side == Nord        
         return (Nord,Ost,Sud, West), (Ost,Sud,West,Nord)
-    else # - обход будет против часовой стрелки
+    else
         return (Sud,Ost,Nord,West), (Ost,Nord,West,Sud) 
     end
